@@ -1,6 +1,6 @@
-package de.szut.dqi12.onlinepoker.client.comm;
+package de.szut.dqi12.onlinepoker.client.comm.packet;
 
-public abstract class Packet {
+public abstract class Packet implements JSONSerializable{
     public static final String KEY_ACTION = "Action";
 
     protected PacketType packetType;
@@ -12,6 +12,4 @@ public abstract class Packet {
     public PacketType getPacketType() {
         return packetType;
     }
-
-    public abstract String toJSON();
 }

@@ -1,6 +1,6 @@
-package de.szut.dqi12.onlinepoker.client.comm.packet.request;
+package de.szut.dqi12.onlinepoker.client.comm.packet.request.lobby;
 
-import de.szut.dqi12.onlinepoker.client.comm.Packet;
+import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
 
 public class JoinTable implements Packet {
 
@@ -14,7 +14,6 @@ public class JoinTable implements Packet {
 		this.stake = stake;
 	}
 
-    @Override
     public String toJSON() {
         return null;
     }

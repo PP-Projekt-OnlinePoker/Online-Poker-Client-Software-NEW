@@ -1,12 +1,16 @@
-package de.szut.dqi12.onlinepoker.client.comm.packet.request;
+package de.szut.dqi12.onlinepoker.client.comm.packet.request.game;
 
-import de.szut.dqi12.onlinepoker.client.comm.Packet;
 
-public class Call implements Packet {
+import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
+import de.szut.dqi12.onlinepoker.client.comm.packet.PacketType;
+
+public class Call extends Packet {
 	public int tableID;
 	public int playerID;
 
 	public Call(int tableID, int playerID) {
+		super(PacketType.CALL);
+
 		this.tableID = tableID;
 		this.playerID = playerID;
 	}
@@ -27,7 +31,6 @@ public class Call implements Packet {
 		this.playerID = playerID;
 	}
 
-	@Override
 	public String toJSON() {
 		return null;
 	}

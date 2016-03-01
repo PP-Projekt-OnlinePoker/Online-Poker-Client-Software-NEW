@@ -29,7 +29,7 @@ public class MenuController extends Controller{
         try {
             Packet packet = PacketParser.parse((String)jsonEncodedPacket);
 
-            PacketType packetType;
+            PacketType packetType = packet.getPacketType();
 
             switch (packetType){
                 case LOGIN:

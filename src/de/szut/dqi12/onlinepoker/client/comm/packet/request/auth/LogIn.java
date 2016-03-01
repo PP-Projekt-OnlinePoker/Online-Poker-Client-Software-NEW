@@ -1,15 +1,17 @@
-package de.szut.dqi12.onlinepoker.client.comm.packet.request;
+package de.szut.dqi12.onlinepoker.client.comm.packet.request.auth;
 
-import de.szut.dqi12.onlinepoker.client.comm.Packet;
-import de.szut.dqi12.onlinepoker.client.comm.PacketType;
+import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
+import de.szut.dqi12.onlinepoker.client.comm.packet.PacketType;
 import org.json.JSONObject;
 
-public class LogIn implements Packet {
+public class LogIn extends Packet {
 
 	private String username;
 	private String password;
 
 	public LogIn(String username, String password) {
+		super(PacketType.LOGIN);
+
 		this.username = username;
 		this.password = password;
 	}
@@ -26,3 +28,4 @@ public class LogIn implements Packet {
 		return jsonObject.toString();
 	}
 }
+
