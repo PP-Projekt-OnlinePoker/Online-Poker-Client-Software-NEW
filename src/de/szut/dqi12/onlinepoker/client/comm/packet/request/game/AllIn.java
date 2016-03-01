@@ -2,12 +2,16 @@ package de.szut.dqi12.onlinepoker.client.comm.packet.request.game;
 
 
 import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
+import de.szut.dqi12.onlinepoker.client.comm.packet.PacketType;
 
-public class AllIn implements Packet {
+public class AllIn extends Packet {
 
 	public int playerId;
 	public int tableId;
+
 	public AllIn(int playerId, int tableId) {
+        super(PacketType.ALLIN);
+
 		this.playerId = playerId;
 		this.tableId = tableId;
 	}

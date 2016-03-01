@@ -5,7 +5,11 @@ import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
 import de.szut.dqi12.onlinepoker.client.comm.packet.PacketType;
 import org.json.JSONObject;
 
-public class GetTableList implements Packet {
+public class GetTableList extends Packet {
+
+    public GetTableList() {
+        super(PacketType.GETTABLELIST);
+    }
 
     public String toJSON() {
         JSONObject jsonObject = new JSONObject();

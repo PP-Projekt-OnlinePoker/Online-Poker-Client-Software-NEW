@@ -27,12 +27,14 @@ public class ServerIO extends Observable implements Runnable {
             this.out = out;
             this.in = in;
         } catch(IOException ex){
-            //TODO: Handle
+            ex.printStackTrace();
         }
     }
 
     public void sendPacket(Packet packet){
-        this.out.write(packet.toJSON());
+        String packetString = packet.toJSON();
+        this.out.println(packet);
+        this.out.flush();
     }
 
     @Override

@@ -12,4 +12,6 @@ public class RegisterResponse extends LoginResponse{
 
         this.packetType = PacketType.REGISTER_RESPONSE;
     }
+
+
 }

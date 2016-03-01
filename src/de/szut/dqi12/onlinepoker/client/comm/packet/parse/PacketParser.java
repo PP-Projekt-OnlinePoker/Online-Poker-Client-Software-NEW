@@ -2,9 +2,12 @@ package de.szut.dqi12.onlinepoker.client.comm.packet.parse;
 
 import de.szut.dqi12.onlinepoker.client.comm.packet.Packet;
 import de.szut.dqi12.onlinepoker.client.comm.packet.PacketType;
+import de.szut.dqi12.onlinepoker.client.comm.packet.entity.Player;
 import de.szut.dqi12.onlinepoker.client.comm.packet.request.auth.LogIn;
 import de.szut.dqi12.onlinepoker.client.comm.packet.request.auth.LogOut;
 import de.szut.dqi12.onlinepoker.client.comm.packet.request.auth.Register;
+import de.szut.dqi12.onlinepoker.client.comm.packet.response.auth.LoginResponse;
+import de.szut.dqi12.onlinepoker.client.comm.packet.response.auth.RegisterResponse;
 import org.json.JSONObject;
 
 /**
@@ -17,32 +20,41 @@ public class PacketParser {
             PacketType packetType = (PacketType) jsonParsed.get(Packet.KEY_ACTION);
 
             switch (packetType){
-                case LOGIN:
-                    return parseLogIn(jsonParsed);
-                case REGISTER:
-                    return parseRegister(jsonParsed);
-                case LOGOUT:
-                    return parseLogout(jsonParsed);
+                case RESPONSE_LOGIN:
+                    return parseRegisterResponse(jsonParsed);
+                case REGISTER_RESPONSE:
+                    return parseLogInResponse(jsonParsed);
                 default:
                     throw new UnsupportedOperationException("Unsupported Packet");
             }
     }
 
-    private static Object parseLogIn(JSONObject jsonParsed){
-        return new LogIn(jsonParsed.getString("username"), jsonParsed.getString("password"));
+    private static Object parseRegisterResponse(JSONObject jsonParsed){
+        boolean success = jsonParsed.getBoolean("success");
+
+        JSONObject playerFromJSON = jsonParsed.getJSONObject("player");
+
+        Player player = null;
+
+        if(playerFromJSON != null){
+            player = (Player) EntityParser.parse(playerFromJSON);
+        }
+
+        return new RegisterResponse(success, player);
     }
 
-    private static Object parseRegister(JSONObject jsonParsed){
-        return new Register(
-                jsonParsed.getString("username"),
-                jsonParsed.getString("password"),
-                jsonParsed.getString("email"),
-                jsonParsed.getString("firstname"),
-                jsonParsed.getString("lastname")
-        );
+    private static Object parseLogInResponse(JSONObject jsonParsed){
+        boolean success = jsonParsed.getBoolean("success");
+
+        JSONObject playerFromJSON = jsonParsed.getJSONObject("player");
+
+        Player player = null;
+
+        if(playerFromJSON != null){
+            player = (Player) EntityParser.parse(playerFromJSON);
+        }
+
+        return new LoginResponse(success, player);
     }
 
-    private static Object parseLogout(JSONObject jsonParsed){
-        return new LogOut(jsonParsed.getInt("player_id"));
-    }
 }

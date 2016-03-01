@@ -29,4 +29,12 @@ public class LoginResponse extends Packet {
 
         return json.toString();
     }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

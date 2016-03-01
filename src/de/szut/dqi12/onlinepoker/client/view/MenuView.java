@@ -100,7 +100,7 @@ public class MenuView extends javax.swing.JFrame implements View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
-        RegisterDialog registerDialog = new RegisterDialog(this.controller);
+        RegisterDialog registerDialog = new RegisterDialog(this, this.controller);
         registerDialog.setVisible(true);
     }//GEN-LAST:event_btnRegisterMouseClicked
 
@@ -146,7 +146,7 @@ public class MenuView extends javax.swing.JFrame implements View {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, Object message) {
 
     }
 
